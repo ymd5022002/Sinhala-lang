@@ -1,32 +1,69 @@
 <!DOCTYPE html>
+<meta http-equiv="content-type" charset="utf-8">
 <head>
     <title>ෂින්හාරා යතුරු පුවරුව</title>
     <script>
-        let text = "";
-        let i = 1;
-        let mojilarge = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
+        let text = "";  /*記述する文字列*/
+        let i = 0;      /*文字化けなし文字の文字数*/
+        let j = 1;      /*文字化け文字の文字数*/
+        let bake = -1;  /*文字化け有無フラグ -1 が文字化けあり　*/
+         let largeChara = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
         'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
-        let mojismall = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
+        let smallChara = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
         'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
         document.onkeydown = keydown;
-        document.getElementById("text").addEventListener('touchstart', keydown);
-        function onKeyPress(e) {
-          if ( e.keyCode !== 13 || ( e.keyCode === 13 && (e.shiftKey === true || e.ctrlKey === true || e.altKey === true) )) { // Enterキー除外
-            return false;
-          }
-          text =  text + "<br>";
-        }
         function keydown() {
-                target = document.getElementById("content1");
-                if (i == 1){
-                    var n = Math.floor(Math.random() * 29) 
-                    text =  text + mojilarge[n];
-                }else{
-                    var n = Math.floor(Math.random() * 29) 
-                    text =  text + mojismall[n];                    
-                };
-                target.innerHTML = text + "_";
-                i = (-1) * i
+            target = document.getElementById("text");
+            target2 = document.getElementById("title");
+            switch (event.keyCode){
+                case 27:    /*Escキー：初期化処理*/
+                    text = "";
+                    i = 0;
+                    j = 1;
+                    target.innerHTML = text + "_";
+                    break;                
+                case 8:    /*BackSpaceキー：後退削除処理*/
+                    if (text.substring(text.length-4,text.length) == "<br>"){
+                        text = text.substring(0,text.length-4);
+                    }else{
+                        text = text.substring(0,text.length-1);
+                        if (bake == 1)　i = i - 2;
+                        if (bake == -1)  j = j - 1;
+                    }
+                    target.innerHTML = text + "_";
+                    break;
+                case 13:    /*Enterキー：改行処理*/    
+                    text =  text + "<br>"
+                    target.innerHTML = text + "_";
+                    break;
+                
+                //case 32:    /*スペースキー：文字化け有無切り替え*/
+                //  bake = (-1) * bake;     /*文字化け有無フラグ反転*/
+                //  if (bake == 1){
+                //      target2.innerHTML = "文字化けないKeybord";
+                //  }else{
+                //      target2.innerHTML = "繝ｫ繝ゅ九､縺ｩKeybord";
+                //  }
+                //
+                //  break;
+                default:
+                    if (bake == 1){ /*文字化けがないとき*/
+                        i = i + 1;
+                        if((i % 2) == 0){　/*偶数キー押し時に処理*/
+                            text =  text + book.substring(i/2-1, i/2);
+                        }
+                    }else{          /*文字化けがあるとき*/
+                        if ((j % 2) == 1){    /*奇数文字目はlargeCharaからランダムに選ぶ*/
+                        var n = Math.floor(Math.random() * 30); /*0-14の整数乱数*/
+                        text =  text + largeChara[n];
+                        }else{                /*偶数文字目はsmallCharaからランダムに選ぶ*/
+                            var n = Math.floor(Math.random() * 30);  /*0-6の整数乱数*/
+                            text =  text + smallChara[n];                    
+                        }
+                        j = j + 1; 
+                    }
+                    target.innerHTML = text + "_";
+            }
             };
             /*document.getElementById('text').innerHTML = "_"*/
     </script>
