@@ -10,7 +10,12 @@
         'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
         document.onkeydown = keydown;
         document.getElementById("text").addEventListener('touchstart', keydown);
-
+        function onKeyPress(e) {
+          if ( e.keyCode !== 13 || ( e.keyCode === 13 && (e.shiftKey === true || e.ctrlKey === true || e.altKey === true) )) { // Enterキー除外
+            return false;
+          }
+          text =  text + "<br>";
+        }
         function keydown() {
                 target = document.getElementById("content1");
                 if (i == 1){
