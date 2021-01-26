@@ -6,7 +6,8 @@
         let i = 1;
         let mojilarge = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
         'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
-        let mojismall = ['ා',' ැ',' ෑ',' ි',' ී',' ු',' ූ',' ෙ',' ේ',' ෛ',' ො',' ෝ',' ෞ',' ්']/*0-13*/
+        let mojismall = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ',
+        'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
         document.onkeydown = keydown;
         document.getElementById("text").addEventListener('touchstart', keydown);
 
@@ -16,7 +17,7 @@
                     var n = Math.floor(Math.random() * 29) 
                     text =  text + mojilarge[n];
                 }else{
-                    var n = Math.floor(Math.random() * 13) 
+                    var n = Math.floor(Math.random() * 29) 
                     text =  text + mojismall[n];                    
                 };
                 target.innerHTML = text + "_";
