@@ -37,15 +37,10 @@
                     target.innerHTML = text + "_";
                     break;
                 
-                //case 32:    /*スペースキー：文字化け有無切り替え*/
-                //  bake = (-1) * bake;     /*文字化け有無フラグ反転*/
-                //  if (bake == 1){
-                //      target2.innerHTML = "文字化けないKeybord";
-                //  }else{
-                //      target2.innerHTML = "繝ｫ繝ゅ九､縺ｩKeybord";
-                //  }
-                //
-                //  break;
+                case 32:    /*スペースキー：文字化け有無切り替え*/
+                    text =  text + " "
+                    target.innerHTML = text + "_";
+                    break;
                 default:
                     if (bake == 1){ /*文字化けがないとき*/
                         i = i + 1;
