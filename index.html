@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <title>ෂින්හාරා යතුරු පුවරුව</title>
+    <script>
+        let text = "";
+        let i = 1;
+        let mojilarge = ['ක','ඛ','ග','ඞ','ඟ','ච','ඡ','ජ','ඣ','ඤ','ඥ','ඦ'
+        'ට','ඨ','ඩ','ඪ','ණ','ඬ','ත','ථ','ද','ධ','න','ඳ','ප','ඵ','බ','භ','ම','ඹ'] /*0-29*/
+        let mojismall = ['ා',' ැ',' ෑ',' ි',' ී',' ු',' ූ',' ෙ',' ේ',' ෛ',' ො',' ෝ',' ෞ',' ්']/*0-13*/
+        document.onkeydown = keydown;
+        document.getElementById("text").addEventListener('touchstart', keydown);
+
+        function keydown() {
+                target = document.getElementById("content1");
+                if (i == 1){
+                    var n = Math.floor(Math.random() * 29) 
+                    text =  text + mojilarge[n];
+                }else{
+                    var n = Math.floor(Math.random() * 13) 
+                    text =  text + mojismall[n];                    
+                };
+                target.innerHTML = text + "_";
+                i = (-1) * i
+            };
+            /*document.getElementById('text').innerHTML = "_"*/
+    </script>
+</head>
+<body>
+    <!--
+    <p>ෂින්හාරා යතුරු පුවරුව</p>
+    <hr>
+    -->
+    <section id="content1"></section>
+    <p><span id="text">_</span></p>
+</body>
